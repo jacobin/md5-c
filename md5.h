@@ -1,16 +1,17 @@
-#ifndef MD5_H
-#define MD5_H
+// MD5 (Message-Digest Algorithm 5)
+// Copyright Victor Breder 2024
+// SPDX-License-Identifier: MIT
 
-typedef struct
-{
-    unsigned int count[2];
-    unsigned int state[4];
-    unsigned char buffer[64];
-}MD5_CTX;
+#pragma once
+#include <stdint.h>
 
-void MD5Init(MD5_CTX* context);
-void MD5Update(MD5_CTX* context, unsigned char* input, unsigned int inputlen);
-void MD5Final(MD5_CTX* context, unsigned char digest[16]);
+typedef struct {
+    uint32_t a, b, c, d;
+} md5_context;
+
+void md5_init(md5_context* ctx);
+void md5_digest(md5_context* ctx, void* buffer, size_t size);
+void md5_output(md5_context* ctx, uint8_t out[16]);
 
 #include <stdio.h>
 #include <stdint.h>
@@ -19,5 +20,3 @@ void MD5Final(MD5_CTX* context, unsigned char digest[16]);
 
 void md5String(char *input, uint8_t *result);
 void md5File(FILE *file, uint8_t *result);
-
-#endif
