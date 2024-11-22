@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>
+#include <fcntl.h>     /* for _O_TEXT and _O_BINARY */
 
 #include "md5.h"
 
@@ -46,6 +47,9 @@ int main(int argc, char* argv[]) {
         }
     }
     else {
+        // FILE* fp = fopen("d:\\a.bat", "r");
+        // FILE* fp = fopen("d:\\a.bat", "rb");
+        _setmode(_fileno(stdin), O_BINARY);
         md5File(stdin, result);
         print_hash(result);
     }

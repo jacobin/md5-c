@@ -184,6 +184,8 @@ void md5String(char* input, uint8_t* result) {
 
 void md5File(FILE* file, uint8_t* result) {
     char* input_buffer = malloc(1024);
+    if (!input_buffer) return;
+
     size_t input_size = 0;
 
     md5_context ctx;

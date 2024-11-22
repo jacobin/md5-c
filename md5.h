@@ -14,7 +14,6 @@ void md5_digest(md5_context* ctx, void* buffer, size_t size);
 void md5_output(md5_context* ctx, uint8_t out[16]);
 
 #include <stdio.h>
-#include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
 
